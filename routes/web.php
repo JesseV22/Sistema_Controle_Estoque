@@ -23,7 +23,8 @@ Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 
 Route::get('/register', [RegisterController::class, 'showRegistrationForm'])->name('register.form');
 Route::post('/register', [RegisterController::class, 'register'])->name('register');
-
+Route::get('/items', [ItemController::class, 'index'])->name('items.index');
+Route::post('/items/withdraw/{id}', [ItemController::class, 'withdraw'])->name('items.withdraw');
 // Rotas protegidas
 Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::resource('itens', ItemController::class);

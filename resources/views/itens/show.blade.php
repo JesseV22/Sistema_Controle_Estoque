@@ -17,7 +17,9 @@
         /* Estilos personalizados aqui */
         body {
             font-family: Arial, sans-serif;
-            background-color: #007bff;
+            background-image: url('https://static.independent.co.uk/2023/06/21/14/Worldwide%20Logistics%20Group_Header%20Image_iStock-1370066038.jpg');
+            background-size: cover;
+            background-position: center;
             min-height: 100vh;
             display: flex;
             flex-direction: column;
@@ -104,18 +106,15 @@
             <!-- Menu de navegação -->
             <ul class="nav nav-pills">
                 <li class="nav-item"><a href="/" class="nav-link"><i class="bi bi-house"></i> Início</a></li>
-                <li class="nav-item"><a href="{{ route('itens.index') }}" class="nav-link active"
-                        aria-current="page"><i class="bi bi-list-ul"></i> Itens</a></li>
-                <li class="nav-item"><a href="{{ route('movimentacoes.index') }}"
-                        class="nav-link"><i class="bi bi-arrow-left-right"></i> Movimentações</a></li>
+                <li class="nav-item"><a href="{{ route('itens.index') }}" class="nav-link active" aria-current="page"><i class="bi bi-list-ul"></i> Itens</a></li>
+                <li class="nav-item"><a href="{{ route('movimentacoes.index') }}" class="nav-link"><i class="bi bi-arrow-left-right"></i> Movimentações</a></li>
             </ul>
         </header>
 
         <div class="container mt-4">
             <!-- Visualizar Item -->
             <h1 class="my-4">Visualizar Item</h1>
-            <a href="{{ route('itens.index') }}" class="btn btn-secondary mb-3"><i class="bi bi-arrow-left"></i> Voltar
-                para a Lista de Itens</a>
+            <a href="{{ route('itens.index') }}" class="btn btn-secondary mb-3"><i class="bi bi-arrow-left"></i> Voltar para a Lista de Itens</a>
             <div class="mb-3">
                 <label class="form-label">Nome</label>
                 <p class="form-control">{{ $item->nome }}</p>

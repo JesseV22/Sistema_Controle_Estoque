@@ -156,6 +156,38 @@
                     </tbody>
                 </table>
             </div>
+
+            <!-- Nova seção para retirada de itens -->
+            <h2 class="mt-5">Retirar Itens</h2>
+            <div class="table-responsive">
+                <table class="table mt-3">
+                    <thead>
+                        <tr>
+                            <th>Nome</th>
+                            <th>Quantidade</th>
+                            <th>Ações</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach ($itens as $item)
+                            <tr>
+                                <td>{{ $item->nome }}</td>
+                                <td>{{ $item->quantidade }}</td>
+                                <td>
+                                    <form action="{{ route('items.withdraw', $item->id) }}" method="POST">
+                                        @csrf
+                                        <div class="input-group">
+                                            <input type="number" name="quantity" class="form-control" min="1" required>
+                                            <button type="submit" class="btn btn-primary">Retirar</button>
+                                        </div>
+                                    </form>
+                                </td>
+                            </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+            </div>
+
             <a href="{{ url('/') }}" class="btn btn-secondary"><i class="bi bi-arrow-left"></i> Voltar </a>
         </div>
     </div>
@@ -170,4 +202,3 @@
 </body>
 
 </html>
-

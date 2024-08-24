@@ -63,11 +63,13 @@
             color: white;
         }
 
-        .img-fullscreen {
+        .carousel-item img {
             width: 100%;
             height: auto;
-            display: block;
-            margin: 20px auto;
+        }
+
+        .carousel-indicators [data-bs-target] {
+            background-color: #007bff;
         }
     </style>
 </head>
@@ -124,10 +126,58 @@
                     Começar</a>
             </div>
 
-            <img src="https://static.independent.co.uk/2023/06/21/14/Worldwide%20Logistics%20Group_Header%20Image_iStock-1370066038.jpg"
-                alt="Controle de Estoque" class="img-fluid img-fullscreen">
+            <!-- Carrossel Bootstrap -->
+            <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
+                <div class="carousel-indicators">
+                    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active"
+                        aria-current="true" aria-label="Slide 1"></button>
+                    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1"
+                        aria-label="Slide 2"></button>
+                    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2"
+                        aria-label="Slide 3"></button>
+                </div>
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <img src="https://static.independent.co.uk/2023/06/21/14/Worldwide%20Logistics%20Group_Header%20Image_iStock-1370066038.jpg"
+                            class="d-block w-100" alt="Controle de Estoque">
+                        <div class="carousel-caption d-none d-md-block">
+                            <h5>Controle de Estoque</h5>
+                            <p>Descrição do Slide.</p>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <img src="https://cdn.shopify.com/s/files/1/0070/7032/files/logistics_20business_20ideas_1848x970.png?v=1711209421"
+                            class="d-block w-100" alt="Controle de Estoque">
+                        <div class="carousel-caption d-none d-md-block">
+                            <h5>Controle de Estoque</h5>
+                            <p>Descrição do Slide.</p>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <img src="https://corlettexpress.com/storage/2021/01/What-the-World-Would-Be-Like-If-Distribution-Services-Didnt-Exist-2048x1024.webp"
+                            class="d-block w-100" alt="Controle de Estoque">
+                        <div class="carousel-caption d-none d-md-block">
+                            <h5>Controle de Estoque</h5>
+                            <p>Descrição do Slide.</p>
+                        </div>
+                    </div>
+                </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions"
+                    data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions"
+                    data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                </button>
+            </div>
         </main>
+        <br>         <br>         <br>         <br>
 
+
+ 
         <footer>
             <p>&copy; 2024 Paulo Junior & Jessé Vitorino</p>
         </footer>

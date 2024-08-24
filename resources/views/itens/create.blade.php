@@ -9,59 +9,38 @@
     <!-- Ícone da Aba -->
     <link rel="icon" href="https://cdn-icons-png.flaticon.com/512/5164/5164023.png" type="image/x-icon">
 
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
     <link href="{{ asset('css/custom.css') }}" rel="stylesheet">
     <style>
         /* Estilos personalizados aqui */
         body {
             font-family: Arial, sans-serif;
-            background-color: #007bff;
-            /* Cor de fundo azul */
+            background-image: url('https://static.independent.co.uk/2023/06/21/14/Worldwide%20Logistics%20Group_Header%20Image_iStock-1370066038.jpg');
+            background-size: cover;
+            background-position: center;
+            min-height: 100vh;
             display: flex;
             flex-direction: column;
-            min-height: 100vh;
             margin: 0;
         }
 
         header {
             background-color: #343a40;
-            /* Cor de fundo do cabeçalho */
             color: white;
-            /* Cor do texto no cabeçalho */
             padding: 10px 0;
         }
 
         .nav-link {
             color: white !important;
-            /* Cor do texto dos links */
             font-weight: bold;
-            /* Texto em negrito */
         }
 
         .nav-link:hover {
             color: #ffc107 !important;
-            /* Cor do texto ao passar o mouse */
         }
 
         h1 {
             color: #007bff;
-            /* Cor do título principal */
-        }
-
-        .content {
-            flex: 1;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-
-        footer {
-            background-color: #343a40;
-            /* Cor de fundo do rodapé */
-            color: #ced4da;
-            /* Cor do texto no rodapé */
-            padding: 10px 0;
         }
 
         .btn-custom {
@@ -91,38 +70,47 @@
 
         .container-fluid {
             padding: 0;
+            flex: 1;
         }
 
         .container {
             background-color: #f5fffa;
             padding: 3%;
             border-radius: 20px;
-            /* Bordas arredondadas */
             box-shadow: 0.2em 0.2em 0.5em rgba(0, 0, 0, 0.3);
             width: 100%;
             max-width: 1000px;
             margin-bottom: 20px;
         }
+
+        footer {
+            background-color: #343a40;
+            color: #ced4da;
+            padding: 10px 0;
+            text-align: center;
+            margin-top: auto;
+            width: 100%;
+        }
     </style>
 </head>
 
 <body>
-    <header class="d-flex flex-wrap justify-content-center py-3 mb-4 border-bottom bg-dark">
-        <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-dark text-decoration-none">
-            <svg class="bi me-2" width="40" height="32">
-                <use xlink:href="#bootstrap"></use>
-            </svg>
-        </a>
+    <div class="container-fluid p-0">
+        <!-- Cabeçalho -->
+        <header class="d-flex flex-wrap justify-content-center py-3 mb-4 border-bottom bg-dark">
+            <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-dark text-decoration-none">
+                <i class="bi bi-bootstrap-fill" width="40" height="32"></i>
+            </a>
 
-        <ul class="nav nav-pills">
-            <li class="nav-item"><a href="/" class="nav-link">Início</a></li>
-            <li class="nav-item"><a href="{{ route('itens.index') }}" class="nav-link active" aria-current="page">Itens</a></li>
-            <li class="nav-item"><a href="{{ route('movimentacoes.index') }}" class="nav-link">Movimentações</a></li>
-        </ul>
-    </header>
+            <!-- Menu de navegação -->
+            <ul class="nav nav-pills">
+                <li class="nav-item"><a href="/" class="nav-link"><i class="bi bi-house"></i> Início</a></li>
+                <li class="nav-item"><a href="{{ route('itens.index') }}" class="nav-link active" aria-current="page"><i class="bi bi-list-ul"></i> Itens</a></li>
+                <li class="nav-item"><a href="{{ route('movimentacoes.index') }}" class="nav-link"><i class="bi bi-arrow-left-right"></i> Movimentações</a></li>
+            </ul>
+        </header>
 
-    <div class="content">
-        <div class="container">
+        <div class="container mt-4">
             <h1 class="my-4">Adicionar Item</h1>
             <form action="{{ route('itens.store') }}" method="POST" enctype="multipart/form-data">
                 @csrf
@@ -144,8 +132,9 @@
                 </div>
                 <div class="mb-3">
                     <label for="imagem" class="form-label">Imagem</label>
-                    <input type="file" class="form-control" id="imagem" name="imagem">
+                    <input type="file" class="form-control" id="imagem" name="imagem" onchange="previewImage(event)">
                 </div>
+                <img id="imagePreview" src="" alt="Imagem Prévia" style="display: none;">
                 <div class="d-flex justify-content-between align-items-center">
                     <button type="submit" class="btn btn-primary">Salvar</button>
                     <a href="{{ route('itens.index') }}" class="btn btn-secondary">Voltar</a>
@@ -154,13 +143,27 @@
         </div>
     </div>
 
-     <!-- Rodapé -->
-     <footer>
-        <p>&copy; 2024 Paulo Junior & Jessé Vitorino</p>
+    <!-- Rodapé -->
+    <footer>
+        <p class="mb-0">&copy; 2024 Paulo Junior & Jessé Vitorino.</p>
     </footer>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+
+    <script>
+        function previewImage(event) {
+            const [file] = event.target.files;
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    const preview = document.getElementById('imagePreview');
+                    preview.src = e.target.result;
+                    preview.style.display = 'block';
+                }
+                reader.readAsDataURL(file);
+            }
+        }
+    </script>
 </body>
 
 </html>
